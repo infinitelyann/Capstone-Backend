@@ -24,3 +24,4 @@
 <hr>
 
 ## E-R-D
+<img width="906" alt="Screen Shot 2022-11-21 at 6 24 15 AM" src="https://user-images.githubusercontent.com/68655342/203050275-69c77671-d722-4207-8857-24ef23f4772a.png">
