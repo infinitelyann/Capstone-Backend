@@ -1,7 +1,7 @@
 #!/bin/bash
 
 API="http://localhost:8000"
-URL_PATH="/examples"
+URL_PATH="/posts"
 
 curl "${API}${URL_PATH}" \
   --include \
@@ -9,7 +9,7 @@ curl "${API}${URL_PATH}" \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{
-    "example": {
+    "post": {
       "text": "'"${TEXT}"'",
       "title": "'"${TITLE}"'"
     }
