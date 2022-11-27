@@ -6,7 +6,8 @@ const cors = require('cors')
 // require route files
 const postRoutes = require('./app/routes/post_routes')
 const userRoutes = require('./app/routes/user_routes')
-
+const profileRoutes = require('./app/routes/profile_routes')
+const commentRoutes = require('./app/routes/comment_routes')
 // require middleware
 const errorHandler = require('./lib/error_handler')
 const replaceToken = require('./lib/replace_token')
@@ -67,6 +68,8 @@ app.use(requestLogger)
 // register route files
 app.use(postRoutes)
 app.use(userRoutes)
+app.use(profileRoutes)
+app.use(commentRoutes)
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be

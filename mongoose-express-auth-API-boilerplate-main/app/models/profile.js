@@ -10,9 +10,6 @@ const profileSchema = new mongoose.Schema(
 			type: String,
 			
 		},
-        pic:{
-            type: String,
-        },
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',

@@ -57,7 +57,7 @@ router.get('/profiles/:id', requireToken, (req, res, next) => {
 
 // CREATE
 // profile /profiles
-router.profile('/profiles', requireToken, (req, res, next) => {
+router.post('/profiles', requireToken, (req, res, next) => {
 	// set owner of new profile to be current user
 	req.body.profile.owner = req.user.id
 

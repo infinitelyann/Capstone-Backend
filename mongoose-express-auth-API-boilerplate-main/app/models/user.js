@@ -8,6 +8,9 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			unique: true,
 		},
+		img: {
+			type: String,
+		},
 		hashedPassword: {
 			type: String,
 			required: true,
