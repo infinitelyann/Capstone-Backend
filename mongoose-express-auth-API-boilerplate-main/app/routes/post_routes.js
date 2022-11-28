@@ -29,11 +29,11 @@ const router = express.Router()
 
 // INDEX
 // GET /posts
-router.get('/pets', (req, res, next) => {
+router.get('/posts', (req, res, next) => {
     Post.find()
         .populate('owner')
         .then(posts => {
-            return posts.map(post => post)
+            return posts.map(post => post.toObject())
         })
         .then(posts => {
             res.status(200).json({ posts: posts })
@@ -43,13 +43,16 @@ router.get('/pets', (req, res, next) => {
 
 // SHOW
 // GET /posts/5a7db6c74d55bc51bdf39793
-router.get('/posts/:id', requireToken, (req, res, next) => {
+router.get('/posts/:id', (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	Post.findById(req.params.id)
 		.populate('owner')
 		.then(handle404)
 		// if `findById` is succesful, respond with 200 and "post" JSON
-		.then((post) => res.status(200).json({ post: post }))
+		// .then((post) => res.status(200).json({ post: post.toObject() }))
+		.then(post => {
+            res.status(200).json({ post: post})
+        })
 		// if an error occurs, pass it to the handler
 		.catch(next)
 })
