@@ -45,7 +45,7 @@ router.get('/profiles', requireToken, (req, res, next) => {
 
 // SHOW
 // GET /profiles/5a7db6c74d55bc51bdf39793
-router.get('/profiles/:id', requireToken, (req, res, next) => {
+router.get('/profile/:id', requireToken, (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	profile.findById(req.params.id)
 		.then(handle404)
@@ -96,7 +96,7 @@ router.patch('/profiles/:id', requireToken, removeBlanks, (req, res, next) => {
 })
 
 // DESTROY
-// DELETE /profiles/5a7db6c74d55bc51bdf39793
+
 router.delete('/profiles/:id', requireToken, (req, res, next) => {
 	profile.findById(req.params.id)
 		.then(handle404)
