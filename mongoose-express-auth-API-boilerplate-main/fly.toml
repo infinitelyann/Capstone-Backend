@@ -6,9 +6,10 @@ kill_timeout = 5
 processes = []
 
 [env]
-  PORT = "8000"
+  PORT = "8080"
   MONGODB_URI = "mongodb+srv://saparker:043097@angstyblogcluster.gotapn1.mongodb.net/blogr-api?retryWrites=true&w=majority"
-  CLIENT_ORIGIN = "https://blogr-capstone.netlify.app/"
+  CLIENT_ORIGIN = "https://blogr-capstone.netlify.app"
+
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
