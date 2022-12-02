@@ -6,7 +6,7 @@ kill_timeout = 5
 processes = []
 
 [env]
-  PORT = "8080"
+  PORT = "8000"
   MONGODB_URI="mongodb+srv://saparker:043097@angstyblogcluster.gotapn1.mongodb.net/blogr-api?retryWrites=true&w=majority"
 
 [experimental]
