@@ -1,14 +1,15 @@
-# fly.toml file generated for blogr on 2022-12-02T02:57:31-05:00
+# fly.toml file generated for blograpi on 2022-12-02T04:19:21-05:00
 
-app = "blogr"
+app = "blograpi"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
 [env]
-  PORT = "8080"
-  MONGODB_URI = "mongodb+srv://saparker:043097@angstyblogcluster.gotapn1.mongodb.net/blogr-api?retryWrites=true&w=majority"
-  CLIENT_ORIGIN = "https://blogr-capstone.netlify.app"
+
+PORT = "8080"
+
+MONGODB_URI = "mongodb+srv://saparker:043097@angstyblogcluster.gotapn1.mongodb.net/blogr-api?retryWrites=true&w=majority"
 
 [experimental]
   allowed_public_ports = []
@@ -16,7 +17,7 @@ processes = []
 
 [[services]]
   http_checks = []
-  internal_port = 8000
+  internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
