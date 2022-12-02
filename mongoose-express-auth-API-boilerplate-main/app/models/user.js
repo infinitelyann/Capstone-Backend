@@ -3,21 +3,18 @@ const profileSchema = require('./profile')
 
 const userSchema = new mongoose.Schema(
 	{
+		profile: {type: [profileSchema.Schema]},
 		email: {
 			type: String,
 			required: true,
 			unique: true,
 		},
-		img: {
-			type: String,
-		},
+		
 		hashedPassword: {
 			type: String,
 			required: true,
 		},
 		token: String,
-	},{
-		profile:[profileSchema]
 	},
 	{
 		timestamps: true,

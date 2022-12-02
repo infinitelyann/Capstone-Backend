@@ -17,13 +17,12 @@ const postSchema = new mongoose.Schema(
 		dislikes: {
 			type: Number,
 		},
+		comments: [commentSchema],
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
 		},
-		comment: {
-		type:[commentSchema.Schema],
-		},
+		
 	},
 	{
 		timestamps: true,

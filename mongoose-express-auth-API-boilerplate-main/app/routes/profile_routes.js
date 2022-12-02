@@ -4,7 +4,7 @@ const express = require('express')
 const passport = require('passport')
 
 // pull in Mongoose model for profiles
-const profile = require('../models/profile')
+const Profile = require('../models/profile')
 
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
@@ -30,11 +30,10 @@ const router = express.Router()
 // INDEX
 // GET /profiles
 router.get('/profiles', requireToken, (req, res, next) => {
-	profile.find()
+	Profile.find()
+		.populate('owner')
 		.then((profiles) => {
-			// `profiles` will be an array of Mongoose documents
-			// we want to convert each one to a POJO, so we use `.map` to
-			// apply `.toObject` to each one
+
 			return profiles.map((profile) => profile.toObject())
 		})
 		// respond with status 200 and JSON of the profiles
@@ -45,9 +44,10 @@ router.get('/profiles', requireToken, (req, res, next) => {
 
 // SHOW
 // GET /profiles/5a7db6c74d55bc51bdf39793
-router.get('/profile/:id', requireToken, (req, res, next) => {
+router.get('/profile/:id', (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
-	profile.findById(req.params.id)
+	Profile.findById(req.params.id)
+		.populate('owner')
 		.then(handle404)
 		// if `findById` is succesful, respond with 200 and "profile" JSON
 		.then((profile) => res.status(200).json({ profile: profile.toObject() }))
@@ -61,7 +61,7 @@ router.post('/profiles', requireToken, (req, res, next) => {
 	// set owner of new profile to be current user
 	req.body.profile.owner = req.user.id
 
-	profile.create(req.body.profile)
+	Profile.create(req.body.profile)
 		// respond to succesful `create` with status 201 and JSON of new "profile"
 		.then((profile) => {
 			res.status(201).json({ profile: profile.toObject() })
@@ -73,13 +73,13 @@ router.post('/profiles', requireToken, (req, res, next) => {
 })
 
 // UPDATE
-// PATCH /profiles/5a7db6c74d55bc51bdf39793
+
 router.patch('/profiles/:id', requireToken, removeBlanks, (req, res, next) => {
 	// if the client attempts to change the `owner` property by including a new
 	// owner, prevent that by deleting that key/value pair
 	delete req.body.profile.owner
 
-	profile.findById(req.params.id)
+	Profile.findById(req.params.id)
 		.then(handle404)
 		.then((profile) => {
 			// pass the `req` object and the Mongoose record to `requireOwnership`
@@ -98,7 +98,7 @@ router.patch('/profiles/:id', requireToken, removeBlanks, (req, res, next) => {
 // DESTROY
 
 router.delete('/profiles/:id', requireToken, (req, res, next) => {
-	profile.findById(req.params.id)
+	Profile.findById(req.params.id)
 		.then(handle404)
 		.then((profile) => {
 			// throw an error if current user doesn't own `profile`
