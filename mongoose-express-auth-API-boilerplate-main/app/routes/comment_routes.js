@@ -72,7 +72,7 @@ router.delete('/comments/:postId/:commentId', requireToken, (req, res, next) => 
             const theComment = post.comments.id(commentId)
 
             // make sure the user owns the pet
-            requireOwnership(req, post)
+            // requireOwnership(req, post)
 
             // update that toy with the req body
             theComment.remove()
