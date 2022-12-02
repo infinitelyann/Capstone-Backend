@@ -1,9 +1,20 @@
-# Blog-Style Social Media Backend
+# Blogr 
+<hr>
+## Blog-Style Social Media Backend
+## Post-Bootcamp Goals
+ - Figure Out Cloudinary
+ - Finsh User Profile
+ - Create Themes 
+     - Fonts
+     - Colors
+ - Allow Edit Comment
+ - Incorporate likes/dislikes
 
 ## Technologies Used
 - ExpressJs
 - NodeJs
 - MongoDB
+- Cloudinary
  <hr>
 
  ### As a user, I want to be able to...
